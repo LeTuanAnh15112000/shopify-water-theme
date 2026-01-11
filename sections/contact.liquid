@@ -1,0 +1,270 @@
+{% comment %} Contact Section {% endcomment %}
+<section class="p_contact">
+  <!-- p_mainvisual -->
+  <section class="p_mainvisual">
+    <div class="p_mainvisual_inner">
+      <h1 class="p_mainvisual_title">{{ section.settings.hero_title | default: 'Contact Us' }}</h1>
+      <p class="p_mainvisual_desc">
+        {{ section.settings.hero_description | default: "Have a question or need assistance? We're here to help. Reach out to us through any of the channels below." }}
+      </p>
+    </div>
+  </section>
+
+  <div id="content">
+    <!-- contact_content -->
+    <section id="contact_content">
+      <div class="contact_content_inner">
+        <div class="contact_content_grid">
+          <!-- Contact Info -->
+          <div class="contact_info">
+            {% for block in section.blocks %}
+              {% if block.type == 'contact_info' %}
+                <div class="contact_info_card" {{ block.shopify_attributes }}>
+                  <div class="contact_info_card_inner">
+                    <div class="contact_info_icon">
+                      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                        {{ block.settings.icon_svg }}
+                      </svg>
+                    </div>
+                    <div class="contact_info_content">
+                      <h3 class="contact_info_title">{{ block.settings.title }}</h3>
+                      <p class="contact_info_desc">{{ block.settings.description }}</p>
+                      {% if block.settings.link_url != blank %}
+                        <a href="{{ block.settings.link_url }}" class="contact_info_link">{{ block.settings.link_text }}</a>
+                      {% elsif block.settings.text != blank %}
+                        <p class="contact_info_text">{{ block.settings.text }}</p>
+                      {% endif %}
+                    </div>
+                  </div>
+                </div>
+              {% endif %}
+            {% endfor %}
+          </div>
+
+          <!-- Contact Form -->
+          <div class="contact_form_wrap">
+            <div class="contact_form_card">
+              <h2 class="contact_form_title">{{ section.settings.form_title | default: 'Send us a Message' }}</h2>
+              {% form 'contact' %}
+                {% if form.posted_successfully? %}
+                  <div class="contact_form_success">
+                    {{ section.settings.success_message | default: 'Thank you for contacting us. We will get back to you as soon as possible.' }}
+                  </div>
+                {% endif %}
+
+                {% if form.errors %}
+                  <div class="contact_form_error">
+                    {{ form.errors | default_errors }}
+                  </div>
+                {% endif %}
+
+                <div class="contact_form_row">
+                  <div class="contact_form_group">
+                    <label class="contact_form_label" for="contact_name">Full Name</label>
+                    <input type="text" id="contact_name" class="contact_form_input" name="contact[name]" placeholder="John Doe" required>
+                  </div>
+
+                  <div class="contact_form_group">
+                    <label class="contact_form_label" for="contact_email">Email Address</label>
+                    <input type="email" id="contact_email" class="contact_form_input" name="contact[email]" placeholder="john@example.com" required>
+                  </div>
+                </div>
+
+                <div class="contact_form_row">
+                  <div class="contact_form_group">
+                    <label class="contact_form_label" for="contact_phone">Phone Number</label>
+                    <input type="tel" id="contact_phone" class="contact_form_input" name="contact[phone]" placeholder="(555) 123-4567">
+                  </div>
+
+                  <div class="contact_form_group">
+                    <label class="contact_form_label" for="contact_subject">Subject</label>
+                    <input type="text" id="contact_subject" class="contact_form_input" name="contact[subject]" placeholder="How can we help?" required>
+                  </div>
+                </div>
+
+                <div class="contact_form_group">
+                  <label class="contact_form_label" for="contact_message">Message</label>
+                  <textarea id="contact_message" class="contact_form_textarea" name="contact[body]" rows="6" placeholder="Tell us more about your inquiry..." required></textarea>
+                </div>
+
+                <button type="submit" class="contact_form_submit">
+                  <svg class="btn_icon" viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                    <line x1="22" y1="2" x2="11" y2="13"/>
+                    <polygon points="22 2 15 22 11 13 2 9 22 2"/>
+                  </svg>
+                  <span>{{ section.settings.submit_button_text | default: 'Send Message' }}</span>
+                </button>
+              {% endform %}
+            </div>
+
+            <!-- Map Section -->
+            {% if section.settings.show_map %}
+              <div class="contact_map_card">
+                {% if section.settings.map_image != blank %}
+                  {{ section.settings.map_image | image_url: width: 800 | image_tag: alt: 'Our Location' }}
+                {% else %}
+                  <div class="contact_map_placeholder">
+                    <svg class="contact_map_icon" viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                      <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/>
+                      <circle cx="12" cy="10" r="3"/>
+                    </svg>
+                    <p class="contact_map_text">Map Location</p>
+                  </div>
+                {% endif %}
+              </div>
+            {% endif %}
+          </div>
+        </div>
+      </div>
+    </section>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Contact",
+  "settings": [
+    {
+      "type": "header",
+      "content": "Hero Section"
+    },
+    {
+      "type": "text",
+      "id": "hero_title",
+      "label": "Hero Title",
+      "default": "Contact Us"
+    },
+    {
+      "type": "textarea",
+      "id": "hero_description",
+      "label": "Hero Description",
+      "default": "Have a question or need assistance? We're here to help. Reach out to us through any of the channels below."
+    },
+    {
+      "type": "header",
+      "content": "Contact Form"
+    },
+    {
+      "type": "text",
+      "id": "form_title",
+      "label": "Form Title",
+      "default": "Send us a Message"
+    },
+    {
+      "type": "text",
+      "id": "submit_button_text",
+      "label": "Submit Button Text",
+      "default": "Send Message"
+    },
+    {
+      "type": "textarea",
+      "id": "success_message",
+      "label": "Success Message",
+      "default": "Thank you for contacting us. We will get back to you as soon as possible."
+    },
+    {
+      "type": "header",
+      "content": "Map Section"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_map",
+      "label": "Show Map",
+      "default": true
+    },
+    {
+      "type": "image_picker",
+      "id": "map_image",
+      "label": "Map Image"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "contact_info",
+      "name": "Contact Info Card",
+      "settings": [
+        {
+          "type": "html",
+          "id": "icon_svg",
+          "label": "Icon SVG",
+          "default": "<path d=\"M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z\"/>"
+        },
+        {
+          "type": "text",
+          "id": "title",
+          "label": "Title",
+          "default": "Phone"
+        },
+        {
+          "type": "textarea",
+          "id": "description",
+          "label": "Description",
+          "default": "Call us for immediate assistance"
+        },
+        {
+          "type": "text",
+          "id": "link_text",
+          "label": "Link Text",
+          "info": "Leave empty to use plain text instead"
+        },
+        {
+          "type": "url",
+          "id": "link_url",
+          "label": "Link URL",
+          "info": "Use tel: for phone or mailto: for email"
+        },
+        {
+          "type": "html",
+          "id": "text",
+          "label": "Plain Text",
+          "info": "Used if link is empty"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Contact",
+      "blocks": [
+        {
+          "type": "contact_info",
+          "settings": {
+            "icon_svg": "<path d=\"M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z\"/>",
+            "title": "Phone",
+            "description": "Call us for immediate assistance",
+            "link_text": "(555) 123-4567",
+            "link_url": "tel:5551234567"
+          }
+        },
+        {
+          "type": "contact_info",
+          "settings": {
+            "icon_svg": "<path d=\"M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z\"/><polyline points=\"22,6 12,13 2,6\"/>",
+            "title": "Email",
+            "description": "Send us an email anytime",
+            "link_text": "info@aquapure.com",
+            "link_url": "mailto:info@aquapure.com"
+          }
+        },
+        {
+          "type": "contact_info",
+          "settings": {
+            "icon_svg": "<path d=\"M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z\"/><circle cx=\"12\" cy=\"10\" r=\"3\"/>",
+            "title": "Address",
+            "description": "Visit our main office",
+            "text": "123 Water Street<br>Pure City, PC 12345"
+          }
+        },
+        {
+          "type": "contact_info",
+          "settings": {
+            "icon_svg": "<circle cx=\"12\" cy=\"12\" r=\"10\"/><polyline points=\"12 6 12 12 16 14\"/>",
+            "title": "Business Hours",
+            "text": "Monday - Friday: 9:00 AM - 6:00 PM<br>Saturday: 10:00 AM - 4:00 PM<br>Sunday: Closed"
+          }
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}

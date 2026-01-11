@@ -1,0 +1,94 @@
+{% comment %}
+  Header Section for Shopify Theme
+{% endcomment %}
+<header class="header">
+  <div class="header_inner">
+    <div class="header_contain">
+      {%- comment -%} Logo {%- endcomment -%}
+      <a href="{{ routes.root_url }}" class="header_logo">
+        {% if section.settings.logo != blank %}
+          <img 
+            src="{{ section.settings.logo | image_url: width: 200 }}" 
+            alt="{{ shop.name }}"
+            width="{{ section.settings.logo.width }}"
+            height="{{ section.settings.logo.height }}"
+            loading="lazy"
+          >
+        {% else %}
+          <svg class="header_logo_icon" viewBox="0 0 24 24" fill="none" stroke="currentColor">
+            <path d="M12 2.69l5.66 5.66a8 8 0 1 1-11.31 0z"/>
+          </svg>
+          <span class="header_logo_txt">{{ section.settings.logo_text | default: shop.name }}</span>
+        {% endif %}
+      </a>
+      
+      {%- comment -%} Desktop Navigation {%- endcomment -%}
+      <nav class="header_nav">
+        {% for link in section.settings.menu.links %}
+          <a 
+            href="{{ link.url }}" 
+            class="header_nav_link {% if link.active %}is-active{% endif %}"
+          >
+            {{ link.title }}
+          </a>
+        {% endfor %}
+      </nav>
+      
+      {%- comment -%} Header Actions {%- endcomment -%}
+      <div class="header_actions">
+        {%- comment -%} Cart Icon {%- endcomment -%}
+        <a href="{{ routes.cart_url }}" class="header_cart" id="cart-icon-bubble">
+          <svg class="header_cart_icon" viewBox="0 0 24 24" fill="none" stroke="currentColor">
+            <circle cx="9" cy="21" r="1"/>
+            <circle cx="20" cy="21" r="1"/>
+            <path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"/>
+          </svg>
+          <span class="header_cart_count cart-count" data-cart-count>{{ cart.item_count }}</span>
+        </a>
+        
+        {%- comment -%} Mobile Menu Toggle {%- endcomment -%}
+        <button class="header_menu_btn" id="menuToggle" aria-label="Toggle menu">
+          <span class="header_menu_icon"></span>
+        </button>
+      </div>
+    </div>
+    
+    {%- comment -%} Mobile Navigation {%- endcomment -%}
+    <nav class="header_nav_mobile" id="mobileMenu">
+      {% for link in section.settings.menu.links %}
+        <a 
+          href="{{ link.url }}" 
+          class="header_nav_mobile_link {% if link.active %}is-active{% endif %}"
+        >
+          {{ link.title }}
+        </a>
+      {% endfor %}
+    </nav>
+  </div>
+</header>
+
+{% schema %}
+{
+  "name": "Header",
+  "settings": [
+    {
+      "type": "image_picker",
+      "id": "logo",
+      "label": "Logo image"
+    },
+    {
+      "type": "text",
+      "id": "logo_text",
+      "label": "Logo text",
+      "default": "AquaPure",
+      "info": "Displayed if no logo image is uploaded"
+    },
+    {
+      "type": "link_list",
+      "id": "menu",
+      "label": "Menu",
+      "default": "main-menu"
+    }
+  ]
+}
+{% endschema %}

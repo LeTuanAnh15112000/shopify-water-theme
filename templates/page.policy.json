@@ -1,0 +1,92 @@
+{
+  "sections": {
+    "header": {
+      "type": "header",
+      "settings": {}
+    },
+    "policy": {
+      "type": "policy",
+      "blocks": {
+        "privacy": {
+          "type": "policy_section",
+          "settings": {
+            "section_id": "privacy",
+            "title": "Privacy Policy",
+            "icon_svg": "<path d=\"M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z\"></path>",
+            "last_updated": "Last updated: January 1, 2024",
+            "content": "<h3 class=\"policy_heading\">Information We Collect</h3><p class=\"policy_text\">We collect information you provide directly to us, such as when you create an account, place an order, subscribe to our newsletter, or contact us. This information may include your name, email address, shipping address, phone number, and payment information.</p><h3 class=\"policy_heading\">How We Use Your Information</h3><p class=\"policy_text\">We use the information we collect to:</p><ul class=\"policy_list\"><li>Process and fulfill your orders</li><li>Communicate with you about your orders and our services</li><li>Send you marketing communications (with your consent)</li><li>Improve our products and services</li><li>Prevent fraud and ensure security</li></ul><h3 class=\"policy_heading\">Information Sharing</h3><p class=\"policy_text\">We do not sell or rent your personal information to third parties. We may share your information with service providers who help us operate our business, such as payment processors and shipping companies.</p><h3 class=\"policy_heading\">Data Security</h3><p class=\"policy_text\">We implement appropriate technical and organizational measures to protect your personal information against unauthorized access, alteration, disclosure, or destruction.</p><h3 class=\"policy_heading\">Your Rights</h3><p class=\"policy_text\">You have the right to access, correct, or delete your personal information. You can also opt-out of marketing communications at any time. Contact us to exercise these rights.</p>"
+          }
+        },
+        "shipping": {
+          "type": "policy_section",
+          "settings": {
+            "section_id": "shipping",
+            "title": "Shipping Policy",
+            "icon_svg": "<rect x=\"1\" y=\"3\" width=\"15\" height=\"13\"></rect><polygon points=\"16 8 20 8 23 11 23 16 16 16 16 8\"></polygon><circle cx=\"5.5\" cy=\"18.5\" r=\"2.5\"></circle><circle cx=\"18.5\" cy=\"18.5\" r=\"2.5\"></circle>",
+            "last_updated": "Last updated: January 1, 2024",
+            "content": "<h3 class=\"policy_heading\">Shipping Methods</h3><p class=\"policy_text\">We offer several shipping options to meet your needs:</p><ul class=\"policy_list\"><li><strong>Standard Shipping:</strong> 5-7 business days (Free for orders over $50)</li><li><strong>Express Shipping:</strong> 2-3 business days ($15.99)</li><li><strong>Overnight Shipping:</strong> 1 business day ($29.99)</li></ul><h3 class=\"policy_heading\">Processing Time</h3><p class=\"policy_text\">Orders are typically processed within 1-2 business days. You will receive a confirmation email with tracking information once your order has shipped.</p><h3 class=\"policy_heading\">Shipping Restrictions</h3><p class=\"policy_text\">We currently ship within the United States only. We do not ship to P.O. boxes or APO/FPO addresses.</p><h3 class=\"policy_heading\">International Shipping</h3><p class=\"policy_text\">International shipping is not currently available. We are working to expand our shipping options to serve customers worldwide.</p>"
+          }
+        },
+        "returns": {
+          "type": "policy_section",
+          "settings": {
+            "section_id": "returns",
+            "title": "Return Policy",
+            "icon_svg": "<polyline points=\"1 4 1 10 7 10\"></polyline><polyline points=\"23 20 23 14 17 14\"></polyline><path d=\"M20.49 9A9 9 0 0 0 5.64 5.64L1 10m22 4l-4.64 4.36A9 9 0 0 1 3.51 15\"></path>",
+            "last_updated": "Last updated: January 1, 2024",
+            "content": "<h3 class=\"policy_heading\">30-Day Return Policy</h3><p class=\"policy_text\">We want you to be completely satisfied with your purchase. If you're not happy with your order, you can return it within 30 days of receipt for a full refund or exchange.</p><h3 class=\"policy_heading\">Return Conditions</h3><p class=\"policy_text\">To be eligible for a return, items must be:</p><ul class=\"policy_list\"><li>Unopened and in original packaging</li><li>In the same condition as when you received them</li><li>Accompanied by the original receipt or proof of purchase</li></ul><h3 class=\"policy_heading\">Return Process</h3><p class=\"policy_text\">To initiate a return:</p><ul class=\"policy_list\"><li>Contact our customer service team at returns@aquapure.com</li><li>Provide your order number and reason for return</li><li>We will provide you with a return shipping label</li><li>Pack the items securely and ship them back to us</li></ul><h3 class=\"policy_heading\">Refunds</h3><p class=\"policy_text\">Once we receive and inspect your return, we will process your refund within 5-7 business days. The refund will be issued to your original payment method.</p>"
+          }
+        },
+        "terms": {
+          "type": "policy_section",
+          "settings": {
+            "section_id": "terms",
+            "title": "Terms of Service",
+            "icon_svg": "<path d=\"M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z\"></path><polyline points=\"14 2 14 8 20 8\"></polyline><line x1=\"16\" y1=\"13\" x2=\"8\" y2=\"13\"></line><line x1=\"16\" y1=\"17\" x2=\"8\" y2=\"17\"></line><polyline points=\"10 9 9 9 8 9\"></polyline>",
+            "last_updated": "Last updated: January 1, 2024",
+            "content": "<h3 class=\"policy_heading\">Acceptance of Terms</h3><p class=\"policy_text\">By accessing and using the AquaPure website, you accept and agree to be bound by these Terms of Service and all applicable laws and regulations.</p><h3 class=\"policy_heading\">Use of Website</h3><p class=\"policy_text\">You may use our website for lawful purposes only. You agree not to:</p><ul class=\"policy_list\"><li>Use the website in any way that violates any applicable laws</li><li>Attempt to gain unauthorized access to our systems</li><li>Interfere with or disrupt the website's operation</li><li>Use automated systems to access the website</li></ul><h3 class=\"policy_heading\">Product Information</h3><p class=\"policy_text\">We strive to provide accurate product descriptions and pricing. However, we do not warrant that product descriptions or other content is accurate, complete, reliable, or error-free.</p><h3 class=\"policy_heading\">Pricing and Payment</h3><p class=\"policy_text\">All prices are in USD and subject to change without notice. We reserve the right to refuse or cancel any order at any time for any reason.</p><h3 class=\"policy_heading\">Intellectual Property</h3><p class=\"policy_text\">All content on this website, including text, graphics, logos, and images, is the property of AquaPure and protected by copyright and trademark laws.</p><h3 class=\"policy_heading\">Limitation of Liability</h3><p class=\"policy_text\">AquaPure shall not be liable for any indirect, incidental, special, consequential, or punitive damages resulting from your use of or inability to use the website or products.</p><h3 class=\"policy_heading\">Changes to Terms</h3><p class=\"policy_text\">We reserve the right to modify these Terms of Service at any time. Changes will be effective immediately upon posting to the website.</p><h3 class=\"policy_heading\">Contact Information</h3><p class=\"policy_text\">If you have any questions about these Terms of Service, please contact us at legal@aquapure.com.</p>"
+          }
+        }
+      },
+      "block_order": ["privacy", "shipping", "returns", "terms"],
+      "settings": {
+        "hero_title": "Policies & Terms",
+        "hero_description": "Our commitment to transparency and customer satisfaction"
+      }
+    },
+    "footer": {
+      "type": "footer",
+      "blocks": {
+        "footer_menu_1": {
+          "type": "menu",
+          "settings": {
+            "title": "Quick Links"
+          }
+        },
+        "footer_menu_2": {
+          "type": "menu",
+          "settings": {
+            "title": "Customer Service"
+          }
+        },
+        "footer_contact": {
+          "type": "contact",
+          "settings": {
+            "title": "Contact",
+            "address_line1": "123 Water Street",
+            "address_line2": "City, State 12345",
+            "phone": "(123) 456-7890",
+            "email": "info@aquapure.com"
+          }
+        }
+      },
+      "block_order": ["footer_menu_1", "footer_menu_2", "footer_contact"],
+      "settings": {
+        "brand_name": "AquaPure",
+        "brand_description": "Premium quality water delivered fresh to your doorstep. Pure, refreshing, and sustainable.",
+        "copyright_text": "&copy; 2024 AquaPure. All rights reserved."
+      }
+    }
+  },
+  "order": ["header", "policy", "footer"]
+}

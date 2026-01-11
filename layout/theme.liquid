@@ -1,0 +1,45 @@
+<!doctype html>
+<html lang="{{ request.locale.iso_code }}">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    
+    <title>
+      {{ page_title }}
+      {%- unless page_title contains shop.name %} - {{ shop.name }}{% endunless -%}
+    </title>
+
+    {% if page_description %}
+      <meta name="description" content="{{ page_description | escape }}">
+    {% endif %}
+
+    {%- comment -%} Google Fonts - giữ nguyên {%- endcomment -%}
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+    {%- comment -%} CSS Files từ assets/ folder {%- endcomment -%}
+    {{ 'css/style.css' | asset_url | stylesheet_tag }}
+    {{ 'css/component.css' | asset_url | stylesheet_tag }}
+    {{ 'css/about.css' | asset_url | stylesheet_tag }}
+    {{ 'css/blog.css' | asset_url | stylesheet_tag }}
+    {{ 'css/contact.css' | asset_url | stylesheet_tag }}
+    {{ 'css/policy.css' | asset_url | stylesheet_tag }}
+    {{ 'css/products.css' | asset_url | stylesheet_tag }}
+    {{ 'css/product-detail.css' | asset_url | stylesheet_tag }}
+    {{ 'css/collection.css' | asset_url | stylesheet_tag }}
+    {{ 'css/cart.css' | asset_url | stylesheet_tag }}
+
+    {%- comment -%} JavaScript Files từ assets/ folder {%- endcomment -%}
+    {{ 'js/cart-handler.js' | asset_url | script_tag }}
+    {{ 'js/collection-filter.js' | asset_url | script_tag }}
+
+    {%- comment -%} Shopify required tag {%- endcomment -%}
+    {{ content_for_header }}
+  </head>
+
+  <body>
+    {{ content_for_layout }}
+  </body>
+</html>

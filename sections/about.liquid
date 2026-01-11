@@ -1,0 +1,355 @@
+{% comment %} About Section {% endcomment %}
+<section class="p_about">
+  <!-- Hero Section -->
+  <section class="p_mainvisual">
+    <div class="p_mainvisual_inner">
+      <h1 class="p_mainvisual_title">{{ section.settings.hero_title | default: 'About AquaPure' }}</h1>
+      <p class="p_mainvisual_desc">
+        {{ section.settings.hero_description | default: "We're dedicated to providing the purest, most refreshing water to homes and businesses.<br>Our commitment to quality and sustainability sets us apart." }}
+      </p>
+    </div>
+  </section>
+
+  <!-- Content -->
+  <div id="content">
+    <!-- Our Story -->
+    <section id="about_story">
+      <div class="about_story_inner">
+        <div class="about_story_grid">
+          <div class="about_story_content">
+            <h2 class="about_story_title">{{ section.settings.story_title | default: 'Our Story' }}</h2>
+            <div class="about_story_text">
+              <p>{{ section.settings.story_paragraph_1 }}</p>
+              <p>{{ section.settings.story_paragraph_2 }}</p>
+              <p>{{ section.settings.story_paragraph_3 }}</p>
+            </div>
+          </div>
+          <div class="about_story_image">
+            {%- if section.settings.story_image != blank -%}
+              {{ section.settings.story_image | image_url: width: 600 | image_tag: alt: 'Pure water' }}
+            {%- else -%}
+              {{ 'images/about/story.jpg' | asset_url | image_tag: alt: 'Pure water' }}
+            {%- endif -%}
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Our Values -->
+    <section id="about_values">
+      <div class="about_values_inner">
+        <h2 class="about_values_title">{{ section.settings.values_title | default: 'Our Values' }}</h2>
+        <div class="about_values_grid">
+          <div class="about_values_item">
+              <div class="about_values_icon">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                  <path d="M12 2.69l5.66 5.66a8 8 0 1 1-11.31 0z"/>
+                </svg>
+              </div>
+              <h3 class="about_values_item_title">{{ section.settings.value_1_title | default: 'Purity First' }}</h3>
+              <p class="about_values_item_desc">{{ section.settings.value_1_text | default: 'We never compromise on quality. Every bottle is tested to ensure it meets our stringent purity standards.' }}</p>
+            </div>
+
+            <div class="about_values_item">
+              <div class="about_values_icon">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                  <path d="M12 2 C 8 2 8 6 12 10 C 16 6 16 2 12 2 M12 10 C 8 10 6 14 6 18 C 6 21 8.5 23 12 23 C 15.5 23 18 21 18 18 C 18 14 16 10 12 10"/>
+                </svg>
+              </div>
+              <h3 class="about_values_item_title">{{ section.settings.value_2_title | default: 'Sustainability' }}</h3>
+              <p class="about_values_item_desc">{{ section.settings.value_2_text | default: "We're committed to eco-friendly practices, from sourcing to packaging, to protect our planet for future generations." }}</p>
+            </div>
+
+            <div class="about_values_item">
+              <div class="about_values_icon">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                  <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/>
+                </svg>
+              </div>
+              <h3 class="about_values_item_title">{{ section.settings.value_3_title | default: 'Customer Care' }}</h3>
+              <p class="about_values_item_desc">{{ section.settings.value_3_text | default: 'Your satisfaction is our priority. We go above and beyond to ensure you have the best experience with every order.' }}</p>
+            </div>
+
+            <div class="about_values_item">
+              <div class="about_values_icon">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                  <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
+                </svg>
+              </div>
+              <h3 class="about_values_item_title">{{ section.settings.value_4_title | default: 'Quality Assurance' }}</h3>
+              <p class="about_values_item_desc">{{ section.settings.value_4_text | default: 'Multi-stage filtration and regular testing ensure every drop meets international quality standards.' }}</p>
+            </div>
+
+            <div class="about_values_item">
+              <div class="about_values_icon">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                  <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/>
+                  <circle cx="9" cy="7" r="4"/>
+                  <path d="M23 21v-2a4 4 0 0 0-3-3.87"/>
+                  <path d="M16 3.13a4 4 0 0 1 0 7.75"/>
+                </svg>
+              </div>
+              <h3 class="about_values_item_title">{{ section.settings.value_5_title | default: 'Community' }}</h3>
+              <p class="about_values_item_desc">{{ section.settings.value_5_text | default: 'We actively support local communities and initiatives that promote health and wellness through proper hydration.' }}</p>
+            </div>
+
+            <div class="about_values_item">
+              <div class="about_values_icon">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                  <circle cx="12" cy="8" r="7"/>
+                  <polyline points="8.21 13.89 7 23 12 20 17 23 15.79 13.88"/>
+                </svg>
+              </div>
+              <h3 class="about_values_item_title">{{ section.settings.value_6_title | default: 'Excellence' }}</h3>
+              <p class="about_values_item_desc">{{ section.settings.value_6_text | default: 'Award-winning products and service that consistently exceed industry standards and customer expectations.' }}</p>
+            </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- about_status -->
+    <section id="about_status">
+        <div class="about_status_inner">
+            <div class="about_status_grid">
+            <div class="about_status_item">
+                <p class="about_status_number">{{ section.settings.status_number_1 | default: '+' }}</p>
+                <p class="about_status_label">{{ section.settings.status_label_1 | default: 'Years Experience' }}</p>
+            </div>
+            
+            <div class="about_status_item">
+                <p class="about_status_number">{{ section.settings.status_number_2 | default: '5' }}</p>
+                <p class="about_status_label">{{ section.settings.status_label_2 | default: 'Happy Customers' }}</p>
+            </div>
+            
+            <div class="about_status_item">
+                <p class="about_status_number">{{ section.settings.status_number_3 | default: '1M+' }}</p>
+                <p class="about_status_label">{{ section.settings.status_label_3 | default: 'Bottles Delivered' }}</p>
+            </div>
+            
+            <div class="about_status_item">
+                <p class="about_status_number">{{ section.settings.status_number_4 | default: '100%' }}</p>
+                <p class="about_status_label">{{ section.settings.status_label_4 | default: 'Pure & Natural' }}</p>
+            </div>
+            </div>
+        </div>
+    </section>
+
+    <div class="about_team_grid">
+    {% for block in section.blocks %}
+        {% if block.type == 'team_member' %}
+        <div class="about_team_item">
+            {% if block.settings.image != blank %}
+            <img src="{{ block.settings.image | image_url: width: 200 }}" alt="{{ block.settings.name }}">
+            {% endif %}
+            <h3>{{ block.settings.name }}</h3>
+            <p>{{ block.settings.position }}</p>
+            <p>{{ block.settings.bio }}</p>
+        </div>
+        {% endif %}
+    {% endfor %}
+    </div>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "About",
+  "settings": [
+    {
+      "type": "text",
+      "id": "hero_title",
+      "label": "Hero Title",
+      "default": "About AquaPure"
+    },
+    {
+      "type": "textarea",
+      "id": "hero_description",
+      "label": "Hero Description",
+      "default": "We're dedicated to providing the purest, most refreshing water to homes and businesses.<br>Our commitment to quality and sustainability sets us apart."
+    },
+    {
+      "type": "text",
+      "id": "story_title",
+      "label": "Story Section Title",
+      "default": "Our Story"
+    },
+    {
+      "type": "textarea",
+      "id": "story_paragraph_1",
+      "label": "Story Paragraph 1",
+      "default": "Founded in 2015, AquaPure began with a simple mission: to make premium quality water accessible to everyone. What started as a small local operation has grown into a trusted name in water delivery across the region."
+    },
+    {
+      "type": "textarea",
+      "id": "story_paragraph_2",
+      "label": "Story Paragraph 2",
+      "default": "We source our water from pristine natural springs, ensuring every drop meets the highest standards of purity and taste. Our state-of-the-art facilities and rigorous quality control processes guarantee that you receive nothing but the best."
+    },
+    {
+      "type": "textarea",
+      "id": "story_paragraph_3",
+      "label": "Story Paragraph 3",
+      "default": "Today, we serve thousands of satisfied customers, from individual homes to large corporations, all trusting AquaPure for their daily hydration needs."
+    },
+    {
+      "type": "image_picker",
+      "id": "story_image",
+      "label": "Story Image"
+    },
+    {
+      "type": "text",
+      "id": "values_title",
+      "label": "Values Section Title",
+      "default": "Our Values"
+    },
+    {
+      "type": "text",
+      "id": "value_1_title",
+      "label": "Value 1 Title",
+      "default": "Purity First"
+    },
+    {
+      "type": "textarea",
+      "id": "value_1_text",
+      "label": "Value 1 Text",
+      "default": "We never compromise on quality. Every bottle is tested to ensure it meets our stringent purity standards."
+    },
+    {
+      "type": "text",
+      "id": "value_2_title",
+      "label": "Value 2 Title",
+      "default": "Sustainability"
+    },
+    {
+      "type": "textarea",
+      "id": "value_2_text",
+      "label": "Value 2 Text",
+      "default": "We're committed to eco-friendly practices, from sourcing to packaging, to protect our planet for future generations."
+    },
+    {
+      "type": "text",
+      "id": "value_3_title",
+      "label": "Value 3 Title",
+      "default": "Customer Focus"
+    },
+    {
+      "type": "textarea",
+      "id": "value_3_text",
+      "label": "Value 3 Text",
+      "default": "Your satisfaction is our priority. We go above and beyond to ensure you have the best experience with every order."
+    },
+    {
+      "type": "text",
+      "id": "value_4_title",
+      "label": "Value 4 Title",
+      "default": "Quality Assurance"
+    },
+    {
+      "type": "textarea",
+      "id": "value_4_text",
+      "label": "Value 4 Text",
+      "default": "Multi-stage filtration and regular testing ensure every drop meets international quality standards."
+    },
+    {
+      "type": "text",
+      "id": "value_5_title",
+      "label": "Value 5 Title",
+      "default": "Community"
+    },
+    {
+      "type": "textarea",
+      "id": "value_5_text",
+      "label": "Value 5 Text",
+      "default": "We actively support local communities and initiatives that promote health and wellness through proper hydration."
+    },
+    {
+      "type": "text",
+      "id": "value_6_title",
+      "label": "Value 6 Title",
+      "default": "Excellence"
+    },
+    {
+      "type": "textarea",
+      "id": "value_6_text",
+      "label": "Value 6 Text",
+      "default": "Award-winning products and service that consistently exceed industry standards and customer expectations."
+    },
+    {
+      "type": "text",
+      "id": "status_number_1",
+      "label": "Status Number 1",
+      "default": "10+"
+    },
+    {
+      "type": "text",
+      "id": "status_label_1",
+      "label": "Status Label 1",
+      "default": "Years Experience"
+    },
+    {
+      "type": "text",
+      "id": "status_number_2",
+      "label": "Status Number 2",
+      "default": "50K+"
+    },
+    {
+      "type": "text",
+      "id": "status_label_2",
+      "label": "Status Label 2",
+      "default": "Happy Customers"
+    },
+    {
+      "type": "text",
+      "id": "status_number_3",
+      "label": "Status Number 3",
+      "default": "1M+"
+    },
+    {
+      "type": "text",
+      "id": "status_label_3",
+      "label": "Status Label 3",
+      "default": "Bottles Delivered"
+    },
+    {
+      "type": "text",
+      "id": "status_number_4",
+      "label": "Status Number 4",
+      "default": "100%"
+    },
+    {
+      "type": "text",
+      "id": "status_label_4",
+      "label": "Status Label 4",
+      "default": "Pure & Natural"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "team_member",
+      "name": "Team Member",
+      "settings": [
+        {
+          "type": "image_picker",
+          "id": "image",
+          "label": "Photo"
+        },
+        {
+          "type": "text",
+          "id": "name",
+          "label": "Name"
+        },
+        {
+          "type": "text",
+          "id": "position",
+          "label": "Position"
+        },
+        {
+          "type": "textarea",
+          "id": "bio",
+          "label": "Bio"
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}

@@ -1,0 +1,173 @@
+{% comment %} Footer Section {% endcomment %}
+<footer class="footer">
+  <div class="footer_inner">
+    <div class="footer_grid">
+      <div class="footer_brand">
+        <div class="footer_logo">
+          <svg class="footer_logo_icon" viewBox="0 0 24 24" fill="none" stroke="currentColor">
+            <path d="M12 2.69l5.66 5.66a8 8 0 1 1-11.31 0z"/>
+          </svg>
+          <span class="footer_logo_txt">{{ section.settings.brand_name | default: 'AquaPure' }}</span>
+        </div>
+        <p class="footer_brand_desc">
+          {{ section.settings.brand_description | default: 'Premium quality water delivered fresh to your doorstep. Pure, refreshing, and sustainable.' }}
+        </p>
+      </div>
+      
+      {% for block in section.blocks %}
+        {% if block.type == 'menu' %}
+          <div class="footer_section" {{ block.shopify_attributes }}>
+            <h3 class="footer_section_title">{{ block.settings.title }}</h3>
+            <ul class="footer_list">
+              {% if block.settings.menu != blank %}
+                {% for link in linklists[block.settings.menu].links %}
+                  <li><a href="{{ link.url }}" class="footer_link">{{ link.title }}</a></li>
+                {% endfor %}
+              {% endif %}
+            </ul>
+          </div>
+        {% elsif block.type == 'contact' %}
+          <div class="footer_section" {{ block.shopify_attributes }}>
+            <h3 class="footer_section_title">{{ block.settings.title }}</h3>
+            <ul class="footer_contact">
+              {% if block.settings.address_line1 != blank %}
+                <li>{{ block.settings.address_line1 }}</li>
+              {% endif %}
+              {% if block.settings.address_line2 != blank %}
+                <li>{{ block.settings.address_line2 }}</li>
+              {% endif %}
+              {% if block.settings.phone != blank %}
+                <li>Phone: {{ block.settings.phone }}</li>
+              {% endif %}
+              {% if block.settings.email != blank %}
+                <li>Email: {{ block.settings.email }}</li>
+              {% endif %}
+            </ul>
+          </div>
+        {% endif %}
+      {% endfor %}
+    </div>
+    
+    <div class="footer_bottom">
+      <p class="footer_copyright">{{ section.settings.copyright_text | default: '&copy; 2024 AquaPure. All rights reserved.' }}</p>
+    </div>
+  </div>
+</footer>
+
+{% schema %}
+{
+  "name": "Footer",
+  "settings": [
+    {
+      "type": "header",
+      "content": "Brand Section"
+    },
+    {
+      "type": "text",
+      "id": "brand_name",
+      "label": "Brand Name",
+      "default": "AquaPure"
+    },
+    {
+      "type": "textarea",
+      "id": "brand_description",
+      "label": "Brand Description",
+      "default": "Premium quality water delivered fresh to your doorstep. Pure, refreshing, and sustainable."
+    },
+    {
+      "type": "header",
+      "content": "Footer Bottom"
+    },
+    {
+      "type": "html",
+      "id": "copyright_text",
+      "label": "Copyright Text",
+      "default": "&copy; 2024 AquaPure. All rights reserved."
+    }
+  ],
+  "blocks": [
+    {
+      "type": "menu",
+      "name": "Menu",
+      "settings": [
+        {
+          "type": "text",
+          "id": "title",
+          "label": "Title",
+          "default": "Quick Links"
+        },
+        {
+          "type": "link_list",
+          "id": "menu",
+          "label": "Menu"
+        }
+      ]
+    },
+    {
+      "type": "contact",
+      "name": "Contact Info",
+      "settings": [
+        {
+          "type": "text",
+          "id": "title",
+          "label": "Title",
+          "default": "Contact"
+        },
+        {
+          "type": "text",
+          "id": "address_line1",
+          "label": "Address Line 1",
+          "default": "123 Water Street"
+        },
+        {
+          "type": "text",
+          "id": "address_line2",
+          "label": "Address Line 2",
+          "default": "City, State 12345"
+        },
+        {
+          "type": "text",
+          "id": "phone",
+          "label": "Phone",
+          "default": "(123) 456-7890"
+        },
+        {
+          "type": "text",
+          "id": "email",
+          "label": "Email",
+          "default": "info@aquapure.com"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Footer",
+      "blocks": [
+        {
+          "type": "menu",
+          "settings": {
+            "title": "Quick Links"
+          }
+        },
+        {
+          "type": "menu",
+          "settings": {
+            "title": "Customer Service"
+          }
+        },
+        {
+          "type": "contact",
+          "settings": {
+            "title": "Contact",
+            "address_line1": "123 Water Street",
+            "address_line2": "City, State 12345",
+            "phone": "(123) 456-7890",
+            "email": "info@aquapure.com"
+          }
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}

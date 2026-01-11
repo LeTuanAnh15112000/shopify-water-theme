@@ -1,0 +1,100 @@
+{% comment %} Collection/Products Section {% endcomment %}
+<div class="p_products">
+    <!-- p_mainvisual (hero section) -->
+    <section class="p_mainvisual">
+      <div class="p_mainvisual_inner">
+        <h1 class="p_mainvisual_title">{{ collection.title | default: 'Our Products' }}</h1>
+        <p class="p_mainvisual_desc">
+          {{ collection.description | default: 'Browse our complete collection of premium water products. Each bottle is carefully sourced and packaged to deliver the purest hydration experience.' }}
+        </p>
+      </div>
+    </section>
+    
+    <!-- products_filter -->
+    <section id="products_filter">
+      <div class="products_filter_inner">
+        <div class="products_filter_list" id="categoryFilter">
+          {%- comment -%} All Products Button {%- endcomment -%}
+          <button class="products_filter_btn is-active" data-handle="all">All</button>
+          
+          {%- comment -%} Loop qua tất cả collections {%- endcomment -%}
+          {%- for coll in collections -%}
+            {%- if coll.handle != 'all' and coll.all_products_count > 0 -%}
+              <button class="products_filter_btn" data-handle="{{ coll.handle }}">
+                {{ coll.title }}
+              </button>
+            {%- endif -%}
+          {%- endfor -%}
+        </div>
+      </div>
+    </section>
+    
+    <!-- products_list -->
+    <section id="products_list">
+      <div class="products_list_inner">
+        <div class="product_grid" id="productsGrid">
+          {%- assign products_limit = section.settings.products_per_page | default: 12 -%}
+          {%- for product in collection.products limit: products_limit -%}
+            <a href="{{ product.url }}" class="product_card" data-category="{{ product.type }}">
+              <div class="product_card_image">
+                {%- if product.featured_image -%}
+                  {{ product.featured_image | image_url: width: 400 | image_tag: alt: product.title }}
+                {%- else -%}
+                  <img src="{{ 'images/common/dummy.jpg' | asset_url }}" alt="{{ product.title }}">
+                {%- endif -%}
+              </div>
+              <div class="product_card_content">
+                <div>
+                  <p class="product_card_category">{{ product.type | upcase }}</p>
+                  <h3 class="product_card_name">{{ product.title }}</h3>
+                </div>
+                <div class="product_card_footer">
+                  <span class="product_card_price">{{ product.price | money }}</span>
+                  {%- if product.variants.first.title != 'Default Title' -%}
+                    <span class="product_card_size">{{ product.variants.first.title }}</span>
+                  {%- endif -%}
+                </div>
+                <button class="product_card_btn" onclick="event.preventDefault(); event.stopPropagation(); addToCart({{ product.variants.first.id }})">
+                  <svg class="product_card_btn_icon" viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                    <circle cx="9" cy="21" r="1"/>
+                    <circle cx="20" cy="21" r="1"/>
+                    <path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"/>
+                  </svg>
+                  Add to Cart
+                </button>
+              </div>
+            </a>
+          {%- else -%}
+            <div class="products_list_empty">
+              <p>No products found in this collection.</p>
+            </div>
+          {%- endfor -%}
+        </div>
+        
+        {%- if paginate.pages > 1 -%}
+          <div class="products_pagination">
+            {{ paginate | default_pagination }}
+          </div>
+        {%- endif -%}
+      </div>
+    </section>
+
+    {% render 'cart-notifications' %}
+</div>
+
+{% schema %}
+{
+  "name": "Collection",
+  "settings": [
+    {
+      "type": "range",
+      "id": "products_per_page",
+      "label": "Products per page",
+      "min": 4,
+      "max": 50,
+      "step": 2,
+      "default": 12
+    }
+  ]
+}
+{% endschema %}

@@ -1,0 +1,213 @@
+{% comment %} 
+  Cart Section
+  ============
+  Sử dụng cart object của Shopify:
+  - cart.items: Array sản phẩm trong giỏ
+  - cart.item_count: Tổng số lượng
+  - cart.total_price: Tổng tiền (cents)
+  
+  Ajax API:
+  - /cart/change.js: Update quantity
+  - /cart/update.js: Update nhiều items
+{% endcomment %}
+
+<div class="p_cart">
+  <!-- cart_header -->
+  <section class="p_mainvisual">
+    <div class="p_mainvisual_inner">
+      <h1 class="p_mainvisual_title">{{ section.settings.title | default: 'Shopping Cart' }}</h1>
+      <p class="p_mainvisual_desc">{{ section.settings.description | default: 'Review the items in your cart and proceed to checkout when you are ready.' }}</p>
+    </div>
+  </section>
+
+  <div id="content">
+    {%- if cart.item_count == 0 -%}
+      <!-- cart_empty -->
+      <section id="cart_empty">
+        <div class="cart_empty_inner">
+          <div class="cart_empty_card">
+            <svg class="cart_empty_icon" viewBox="0 0 24 24" fill="none" stroke="currentColor">
+              <circle cx="9" cy="21" r="1"/>
+              <circle cx="20" cy="21" r="1"/>
+              <path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"/>
+            </svg>
+            <h2 class="cart_empty_title">Your cart is empty</h2>
+            <p class="cart_empty_desc">Start shopping to add items to your cart</p>
+            <a href="/collections/all" class="btn_primary">Continue Shopping</a>
+          </div>
+        </div>
+      </section>
+    {%- else -%}
+      <!-- cart_content -->
+      <section id="cart_content">
+        <div class="cart_content_inner">
+          <div class="cart_content_grid">
+            <!-- Cart Items -->
+            <div class="cart_items" id="cartItemsList">
+              {%- for item in cart.items -%}
+                <div class="cart_item" data-item-key="{{ item.key }}">
+                  <div class="cart_item_content">
+                    <div class="cart_item_image">
+                      {%- if item.image -%}
+                        {{ item.image | image_url: width: 200 | image_tag: alt: item.title }}
+                      {%- else -%}
+                        <img src="{{ 'images/common/dummy.jpg' | asset_url }}" alt="{{ item.title }}">
+                      {%- endif -%}
+                    </div>
+                    <div class="cart_item_details">
+                      <div class="cart_item_header">
+                        <div class="cart_item_info">
+                          <h3 class="cart_item_name">
+                            <a href="{{ item.url }}">{{ item.product.title }}</a>
+                          </h3>
+                          {%- if item.variant.title != 'Default Title' -%}
+                            <p class="cart_item_size">{{ item.variant.title }}</p>
+                          {%- endif -%}
+                        </div>
+                        <button class="cart_item_remove" onclick="removeCartItem('{{ item.key }}')" aria-label="Remove item">
+                          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                            <path d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16"/>
+                          </svg>
+                        </button>
+                      </div>
+                      <div class="cart_item_footer">
+                        <div class="cart_item_quantity">
+                          <button class="cart_quantity_btn" onclick="updateCartItem('{{ item.key }}', {{ item.quantity | minus: 1 }})">-</button>
+                          <span class="cart_quantity_value">{{ item.quantity }}</span>
+                          <button class="cart_quantity_btn" onclick="updateCartItem('{{ item.key }}', {{ item.quantity | plus: 1 }})">+</button>
+                        </div>
+                        <p class="cart_item_price">{{ item.line_price | money }}</p>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              {%- endfor -%}
+            </div>
+
+            <!-- Order Summary -->
+            <div class="cart_summary_wrap">
+              <div class="cart_summary">
+                <h2 class="cart_summary_title">Order Summary</h2>
+                
+                <div class="cart_summary_details">
+                  <div class="cart_summary_row">
+                    <span>Subtotal ({{ cart.item_count }} items)</span>
+                    <span id="cartSubtotal">{{ cart.items_subtotal_price | money }}</span>
+                  </div>
+                  <div class="cart_summary_row">
+                    <span>Shipping</span>
+                    <span class="cart_summary_free">Calculated at checkout</span>
+                  </div>
+                  <div class="cart_summary_row cart_summary_total">
+                    <span>Total</span>
+                    <span id="cartTotal">{{ cart.total_price | money }}</span>
+                  </div>
+                </div>
+
+                <div class="cart_summary_actions">
+                  {%- comment -%} 
+                    QUAN TRỌNG: checkout_url dẫn tới Shopify hosted checkout
+                    Bạn KHÔNG CẦN tạo checkout.liquid!
+                  {%- endcomment -%}
+                  <a href="{{ checkout_url }}" class="btn_primary full">Proceed to Checkout</a>
+                  <a href="/collections/all" class="btn_secondary full">Continue Shopping</a>
+                </div>
+
+                {%- comment -%} Optional: Add note to order {%- endcomment -%}
+                <div class="cart_note">
+                  <label for="cartNote" class="cart_note_label">Order Note (optional)</label>
+                  <textarea id="cartNote" name="note" class="cart_note_input" placeholder="Add special instructions...">{{ cart.note }}</textarea>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+    {%- endif -%}
+  </div>
+
+  {% render 'cart-notifications' %}
+</div>
+
+<script>
+/**
+ * Update cart item quantity
+ * Sử dụng Shopify Ajax API: /cart/change.js
+ */
+async function updateCartItem(itemKey, newQuantity) {
+  if (newQuantity < 0) return;
+  
+  if (window.showLoading) window.showLoading();
+  
+  try {
+    const response = await fetch('/cart/change.js', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        id: itemKey,
+        quantity: newQuantity
+      })
+    });
+    
+    if (!response.ok) throw new Error('Failed to update');
+    
+    // Reload page to show updated cart
+    window.location.reload();
+    
+  } catch (error) {
+    console.error('Update error:', error);
+    if (window.showNotification) {
+      window.showNotification('Could not update cart', 'error');
+    }
+  } finally {
+    if (window.hideLoading) window.hideLoading();
+  }
+}
+
+/**
+ * Remove item from cart (set quantity to 0)
+ */
+function removeCartItem(itemKey) {
+  updateCartItem(itemKey, 0);
+}
+
+/**
+ * Update cart note
+ */
+document.addEventListener('DOMContentLoaded', function() {
+  const noteInput = document.getElementById('cartNote');
+  if (noteInput) {
+    let timeout;
+    noteInput.addEventListener('input', function() {
+      clearTimeout(timeout);
+      timeout = setTimeout(() => {
+        fetch('/cart/update.js', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ note: this.value })
+        });
+      }, 500);
+    });
+  }
+});
+</script>
+
+{% schema %}
+{
+  "name": "Cart",
+  "settings": [
+    {
+      "type": "text",
+      "id": "title",
+      "label": "Page Title",
+      "default": "Shopping Cart"
+    },
+    {
+      "type": "textarea",
+      "id": "description",
+      "label": "Page Description",
+      "default": "Review the items in your cart and proceed to checkout when you are ready."
+    }
+  ]
+}
+{% endschema %}

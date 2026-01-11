@@ -1,0 +1,18 @@
+{% comment %}
+  Cart Notification Snippet
+  Reusable loading overlay and notification toast
+  Usage: {% render 'cart-notifications' %}
+{% endcomment %}
+
+<!-- Loading Overlay -->
+<div class="cart-loading-overlay" id="cartLoadingOverlay">
+  <div class="cart-spinner"></div>
+</div>
+
+<!-- Notification Toast -->
+<div class="cart-notification" id="cartNotification">
+  <svg class="cart-notification-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor">
+    <path d="M20 6L9 17l-5-5" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+  </svg>
+  <span class="cart-notification-message" id="cartNotificationMessage"></span>
+</div>

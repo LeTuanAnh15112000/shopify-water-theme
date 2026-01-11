@@ -1,0 +1,14 @@
+{
+  "sections": {
+    "header": {
+      "type": "header"
+    },
+    "product-detail": {
+      "type": "product-detail"
+    },
+    "footer": {
+      "type": "footer"
+    }
+  },
+  "order": ["header", "product-detail", "footer"]
+}

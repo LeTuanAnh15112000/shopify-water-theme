@@ -1,0 +1,327 @@
+{% comment %} Home Section {% endcomment %}
+
+<!-- idx_mainvisual -->
+<section id="idx_mainvisual">
+  <div class="idx_mainvisual_inner">
+    <div class="idx_mainvisual_grid">
+      <div class="idx_mainvisual_content">
+        <h1 class="idx_mainvisual_title">
+          {{ section.settings.hero_title_line1 | default: 'Pure Refreshment,' }}<br>
+          <span class="idx_mainvisual_title_accent">{{ section.settings.hero_title_line2 | default: 'Delivered Fresh' }}</span>
+        </h1>
+        <p class="idx_mainvisual_desc">
+          {{ section.settings.hero_description | default: 'Experience the finest selection of premium water products. From natural spring water to alkaline and sparkling varieties, we deliver pure hydration to your doorstep.' }}
+        </p>
+        <div class="idx_mainvisual_actions">
+          <a href="{{ section.settings.primary_button_link | default: '/collections/all' }}" class="btn_primary">
+            <span>{{ section.settings.primary_button_text | default: 'Shop Now' }}</span>
+            <svg class="btn_icon" viewBox="0 0 24 24" fill="none" stroke="currentColor">
+              <path d="M5 12h14M12 5l7 7-7 7"/>
+            </svg>
+          </a>
+          <a href="{{ section.settings.secondary_button_link | default: '/pages/about' }}" class="btn_secondary">
+            <span>{{ section.settings.secondary_button_text | default: 'Learn More' }}</span>
+          </a>
+        </div>
+      </div>
+      
+      <div class="idx_mainvisual_image_wrap">
+        <div class="idx_mainvisual_image">
+          {%- if section.settings.hero_image != blank -%}
+            {{ section.settings.hero_image | image_url: width: 800 | image_tag: alt: 'Fresh Water' }}
+          {%- else -%}
+            <img src="{{ 'mainvisual.jpg' | asset_url }}" alt="Fresh Water">
+          {%- endif -%}
+        </div>
+        <div class="idx_mainvisual_deco deco01"></div>
+        <div class="idx_mainvisual_deco deco02"></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- idx_features -->
+<section id="idx_features">
+  <div class="idx_features_inner">
+    <div class="idx_features_grid">
+      {% for block in section.blocks %}
+        {% if block.type == 'feature' %}
+          <div class="idx_features_item">
+            <div class="idx_features_icon">
+              {{ block.settings.icon_svg }}
+            </div>
+            <h3 class="idx_features_title">{{ block.settings.title }}</h3>
+            <p class="idx_features_desc">{{ block.settings.description }}</p>
+          </div>
+        {% endif %}
+      {% endfor %}
+    </div>
+  </div>
+</section>
+
+<!-- idx_products -->
+<section id="idx_products">
+  <div class="idx_products_inner">
+    <div class="idx_products_header">
+      <h2 class="idx_products_title">{{ section.settings.products_title | default: 'Featured Products' }}</h2>
+      <p class="idx_products_desc">{{ section.settings.products_description | default: 'Discover our most popular water products' }}</p>
+    </div>
+    
+    <div class="product_grid" id="productsList">
+      {%- if section.settings.product_collection != blank -%}
+        {%- assign collection = collections[section.settings.product_collection] -%}
+      {%- else -%}
+        {%- assign collection = collections.all -%}
+      {%- endif -%}
+      
+      {%- for product in collection.products limit: section.settings.products_limit -%}
+        <a href="{{ product.url }}" class="product_card">
+          <div class="product_card_image">
+            {%- if product.featured_image -%}
+              {{ product.featured_image | image_url: width: 400 | image_tag: alt: product.title }}
+            {%- else -%}
+              {{ 'images/common/dummy.jpg' | asset_url | image_tag: alt: product.title }}
+            {%- endif -%}
+          </div>
+          <div class="product_card_content">
+            <div>
+              <p class="product_card_category">{{ product.type | upcase }}</p>
+              <h3 class="product_card_name">{{ product.title }}</h3>
+            </div>
+            <div class="product_card_footer">
+              <span class="product_card_price">{{ product.price | money }}</span>
+              {%- if product.variants.first.title != 'Default Title' -%}
+                <span class="product_card_size">{{ product.variants.first.title }}</span>
+              {%- endif -%}
+            </div>
+            <button class="product_card_btn" onclick="event.preventDefault(); event.stopPropagation(); addToCart({{ product.variants.first.id }})">
+              <svg class="product_card_btn_icon" viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                <circle cx="9" cy="21" r="1"/>
+                <circle cx="20" cy="21" r="1"/>
+                <path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"/>
+              </svg>
+              Add to Cart
+            </button>
+          </div>
+        </a>
+      {%- endfor -%}
+    </div>
+    
+    <div class="idx_products_action">
+      <a href="{{ section.settings.view_all_link | default: '/collections/all' }}" class="btn_secondary">
+        <span>{{ section.settings.view_all_text | default: 'View All Products' }}</span>
+        <svg class="btn_icon" viewBox="0 0 24 24" fill="none" stroke="currentColor">
+          <path d="M5 12h14M12 5l7 7-7 7"/>
+        </svg>
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- idx_cta -->
+<section id="idx_cta">
+  <div class="idx_cta_inner">
+    <h2 class="idx_cta_title">{{ section.settings.cta_title | default: 'Ready to Experience Pure Hydration?' }}</h2>
+    <p class="idx_cta_desc">
+      {{ section.settings.cta_description | default: 'Join thousands of satisfied customers who trust AquaPure for their daily hydration needs.' }}
+    </p>
+    <a href="{{ section.settings.cta_button_link | default: '/collections/all' }}" class="btn_white">
+      <span>{{ section.settings.cta_button_text | default: 'Start Shopping' }}</span>
+      <svg class="btn_icon" viewBox="0 0 24 24" fill="none" stroke="currentColor">
+        <path d="M5 12h14M12 5l7 7-7 7"/>
+      </svg>
+    </a>
+  </div>
+</section>
+
+{% render 'cart-notifications' %}
+
+{% schema %}
+{
+  "name": "Home",
+  "settings": [
+    {
+      "type": "header",
+      "content": "Hero Section"
+    },
+    {
+      "type": "text",
+      "id": "hero_title_line1",
+      "label": "Hero Title Line 1",
+      "default": "Pure Refreshment,"
+    },
+    {
+      "type": "text",
+      "id": "hero_title_line2",
+      "label": "Hero Title Line 2",
+      "default": "Delivered Fresh"
+    },
+    {
+      "type": "textarea",
+      "id": "hero_description",
+      "label": "Hero Description",
+      "default": "Experience the finest selection of premium water products. From natural spring water to alkaline and sparkling varieties, we deliver pure hydration to your doorstep."
+    },
+    {
+      "type": "image_picker",
+      "id": "hero_image",
+      "label": "Hero Image"
+    },
+    {
+      "type": "text",
+      "id": "primary_button_text",
+      "label": "Primary Button Text",
+      "default": "Shop Now"
+    },
+    {
+      "type": "url",
+      "id": "primary_button_link",
+      "label": "Primary Button Link"
+    },
+    {
+      "type": "text",
+      "id": "secondary_button_text",
+      "label": "Secondary Button Text",
+      "default": "Learn More"
+    },
+    {
+      "type": "url",
+      "id": "secondary_button_link",
+      "label": "Secondary Button Link"
+    },
+    {
+      "type": "header",
+      "content": "Featured Products Section"
+    },
+    {
+      "type": "text",
+      "id": "products_title",
+      "label": "Products Section Title",
+      "default": "Featured Products"
+    },
+    {
+      "type": "textarea",
+      "id": "products_description",
+      "label": "Products Section Description",
+      "default": "Discover our most popular water products"
+    },
+    {
+      "type": "collection",
+      "id": "product_collection",
+      "label": "Product Collection"
+    },
+    {
+      "type": "range",
+      "id": "products_limit",
+      "label": "Number of Products to Show",
+      "min": 2,
+      "max": 12,
+      "step": 1,
+      "default": 4
+    },
+    {
+      "type": "text",
+      "id": "view_all_text",
+      "label": "View All Button Text",
+      "default": "View All Products"
+    },
+    {
+      "type": "url",
+      "id": "view_all_link",
+      "label": "View All Button Link"
+    },
+    {
+      "type": "header",
+      "content": "CTA Section"
+    },
+    {
+      "type": "text",
+      "id": "cta_title",
+      "label": "CTA Title",
+      "default": "Ready to Experience Pure Hydration?"
+    },
+    {
+      "type": "textarea",
+      "id": "cta_description",
+      "label": "CTA Description",
+      "default": "Join thousands of satisfied customers who trust AquaPure for their daily hydration needs."
+    },
+    {
+      "type": "text",
+      "id": "cta_button_text",
+      "label": "CTA Button Text",
+      "default": "Start Shopping"
+    },
+    {
+      "type": "url",
+      "id": "cta_button_link",
+      "label": "CTA Button Link"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "feature",
+      "name": "Feature Item",
+      "settings": [
+        {
+          "type": "html",
+          "id": "icon_svg",
+          "label": "Icon SVG",
+          "default": "<svg viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\"><path d=\"M12 2.69l5.66 5.66a8 8 0 1 1-11.31 0z\"/></svg>"
+        },
+        {
+          "type": "text",
+          "id": "title",
+          "label": "Title",
+          "default": "Feature Title"
+        },
+        {
+          "type": "textarea",
+          "id": "description",
+          "label": "Description",
+          "default": "Feature description"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Home",
+      "blocks": [
+        {
+          "type": "feature",
+          "settings": {
+            "icon_svg": "<svg viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\"><path d=\"M12 2.69l5.66 5.66a8 8 0 1 1-11.31 0z\"/></svg>",
+            "title": "100% Pure",
+            "description": "Natural spring water from pristine sources"
+          }
+        },
+        {
+          "type": "feature",
+          "settings": {
+            "icon_svg": "<svg viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\"><rect x=\"1\" y=\"3\" width=\"15\" height=\"13\"/><polygon points=\"16 8 20 8 23 11 23 16 16 16 16 8\"/><circle cx=\"5.5\" cy=\"18.5\" r=\"2.5\"/><circle cx=\"18.5\" cy=\"18.5\" r=\"2.5\"/></svg>",
+            "title": "Fast Delivery",
+            "description": "Same-day delivery in most areas"
+          }
+        },
+        {
+          "type": "feature",
+          "settings": {
+            "icon_svg": "<svg viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\"><circle cx=\"12\" cy=\"8\" r=\"7\"/><polyline points=\"8.21 13.89 7 23 12 20 17 23 15.79 13.88\"/></svg>",
+            "title": "Premium Quality",
+            "description": "Award-winning water products"
+          }
+        },
+        {
+          "type": "feature",
+          "settings": {
+            "icon_svg": "<svg viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\"><path d=\"M12 2 C 8 2 8 6 12 10 C 16 6 16 2 12 2 M12 10 C 8 10 6 14 6 18 C 6 21 8.5 23 12 23 C 15.5 23 18 21 18 18 C 18 14 16 10 12 10\"/></svg>",
+            "title": "Eco-Friendly",
+            "description": "Sustainable packaging and practices"
+          }
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}

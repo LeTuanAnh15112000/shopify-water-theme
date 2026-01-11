@@ -1,0 +1,114 @@
+{% comment %} Policy Section {% endcomment %}
+<section class="p_policy">
+  <!-- p_mainvisual -->
+  <section class="p_mainvisual">
+    <div class="p_mainvisual_inner">
+      <h1 class="p_mainvisual_title">{{ section.settings.hero_title | default: 'Policies & Terms' }}</h1>
+      <p class="p_mainvisual_desc">{{ section.settings.hero_description | default: 'Our commitment to transparency and customer satisfaction' }}</p>
+    </div>
+  </section>
+
+  <div id="content">
+    <!-- Policy Navigation -->
+    <section id="policy_nav">
+      <div class="policy_nav_inner">
+        <a href="#privacy" class="policy_nav_link">Privacy Policy</a>
+        <a href="#shipping" class="policy_nav_link">Shipping Policy</a>
+        <a href="#returns" class="policy_nav_link">Return Policy</a>
+        <a href="#terms" class="policy_nav_link">Terms of Service</a>
+      </div>
+    </section>
+
+    {% for block in section.blocks %}
+      {% if block.type == 'policy_section' %}
+        <section id="{{ block.settings.section_id }}" class="policy_section" {{ block.shopify_attributes }}>
+          <div class="policy_section_inner">
+            <div class="policy_header">
+              <svg class="policy_icon" viewBox="0 0 24 24">
+                {{ block.settings.icon_svg }}
+              </svg>
+              <h2 class="policy_title">{{ block.settings.title }}</h2>
+            </div>
+            <div class="policy_content">
+              <p class="policy_updated">{{ block.settings.last_updated }}</p>
+              {{ block.settings.content }}
+            </div>
+          </div>
+        </section>
+      {% endif %}
+    {% endfor %}
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Policy",
+  "settings": [
+    {
+      "type": "text",
+      "id": "hero_title",
+      "label": "Hero Title",
+      "default": "Policies & Terms"
+    },
+    {
+      "type": "textarea",
+      "id": "hero_description",
+      "label": "Hero Description",
+      "default": "Our commitment to transparency and customer satisfaction"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "policy_section",
+      "name": "Policy Section",
+      "settings": [
+        {
+          "type": "text",
+          "id": "section_id",
+          "label": "Section ID",
+          "info": "Used for navigation anchors (e.g., privacy, shipping, returns, terms)"
+        },
+        {
+          "type": "text",
+          "id": "title",
+          "label": "Title"
+        },
+        {
+          "type": "html",
+          "id": "icon_svg",
+          "label": "Icon SVG Path",
+          "default": "<path d=\"M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z\"></path>"
+        },
+        {
+          "type": "text",
+          "id": "last_updated",
+          "label": "Last Updated",
+          "default": "Last updated: January 1, 2024"
+        },
+        {
+          "type": "html",
+          "id": "content",
+          "label": "Policy Content"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Policy",
+      "blocks": [
+        {
+          "type": "policy_section",
+          "settings": {
+            "section_id": "privacy",
+            "title": "Privacy Policy",
+            "icon_svg": "<path d=\"M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z\"></path>",
+            "last_updated": "Last updated: January 1, 2024",
+            "content": "<h3 class=\"policy_heading\">Information We Collect</h3><p class=\"policy_text\">We collect information you provide directly to us...</p>"
+          }
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}

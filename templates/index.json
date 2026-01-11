@@ -1,0 +1,98 @@
+{
+  "sections": {
+    "header": {
+      "type": "header",
+      "settings": {}
+    },
+    "home": {
+      "type": "home",
+      "blocks": {
+        "feature_1": {
+          "type": "feature",
+          "settings": {
+            "icon_svg": "<svg viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\"><path d=\"M12 2.69l5.66 5.66a8 8 0 1 1-11.31 0z\"/></svg>",
+            "title": "100% Pure",
+            "description": "Natural spring water from pristine sources"
+          }
+        },
+        "feature_2": {
+          "type": "feature",
+          "settings": {
+            "icon_svg": "<svg viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\"><rect x=\"1\" y=\"3\" width=\"15\" height=\"13\"/><polygon points=\"16 8 20 8 23 11 23 16 16 16 16 8\"/><circle cx=\"5.5\" cy=\"18.5\" r=\"2.5\"/><circle cx=\"18.5\" cy=\"18.5\" r=\"2.5\"/></svg>",
+            "title": "Fast Delivery",
+            "description": "Same-day delivery in most areas"
+          }
+        },
+        "feature_3": {
+          "type": "feature",
+          "settings": {
+            "icon_svg": "<svg viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\"><circle cx=\"12\" cy=\"8\" r=\"7\"/><polyline points=\"8.21 13.89 7 23 12 20 17 23 15.79 13.88\"/></svg>",
+            "title": "Premium Quality",
+            "description": "Award-winning water products"
+          }
+        },
+        "feature_4": {
+          "type": "feature",
+          "settings": {
+            "icon_svg": "<svg viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\"><path d=\"M12 2 C 8 2 8 6 12 10 C 16 6 16 2 12 2 M12 10 C 8 10 6 14 6 18 C 6 21 8.5 23 12 23 C 15.5 23 18 21 18 18 C 18 14 16 10 12 10\"/></svg>",
+            "title": "Eco-Friendly",
+            "description": "Sustainable packaging and practices"
+          }
+        }
+      },
+      "block_order": ["feature_1", "feature_2", "feature_3", "feature_4"],
+      "settings": {
+        "hero_title_line1": "Pure Refreshment,",
+        "hero_title_line2": "Delivered Fresh",
+        "hero_description": "Experience the finest selection of premium water products. From natural spring water to alkaline and sparkling varieties, we deliver pure hydration to your doorstep.",
+        "primary_button_text": "Shop Now",
+        "primary_button_link": "/collections/all",
+        "secondary_button_text": "Learn More",
+        "secondary_button_link": "/pages/about",
+        "products_title": "Featured Products",
+        "products_description": "Discover our most popular water products",
+        "products_limit": 4,
+        "view_all_text": "View All Products",
+        "view_all_link": "/collections/all",
+        "cta_title": "Ready to Experience Pure Hydration?",
+        "cta_description": "Join thousands of satisfied customers who trust AquaPure for their daily hydration needs.",
+        "cta_button_text": "Start Shopping",
+        "cta_button_link": "/collections/all"
+      }
+    },
+    "footer": {
+      "type": "footer",
+      "blocks": {
+        "footer_menu_1": {
+          "type": "menu",
+          "settings": {
+            "title": "Quick Links"
+          }
+        },
+        "footer_menu_2": {
+          "type": "menu",
+          "settings": {
+            "title": "Customer Service"
+          }
+        },
+        "footer_contact": {
+          "type": "contact",
+          "settings": {
+            "title": "Contact",
+            "address_line1": "123 Water Street",
+            "address_line2": "City, State 12345",
+            "phone": "(123) 456-7890",
+            "email": "info@aquapure.com"
+          }
+        }
+      },
+      "block_order": ["footer_menu_1", "footer_menu_2", "footer_contact"],
+      "settings": {
+        "brand_name": "AquaPure",
+        "brand_description": "Premium quality water delivered fresh to your doorstep. Pure, refreshing, and sustainable.",
+        "copyright_text": "&copy; 2024 AquaPure. All rights reserved."
+      }
+    }
+  },
+  "order": ["header", "home", "footer"]
+}
