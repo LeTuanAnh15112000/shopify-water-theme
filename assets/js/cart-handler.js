@@ -1,12 +1,11 @@
 /**
  * Cart Handler - Shopify Ajax Cart Functions
- * Xử lý thêm sản phẩm vào giỏ hàng và cập nhật UI
- * Sử dụng cho: Home page, Product page, Collection page
+ * Handles adding products to cart and updating UI
+ * Used for: Home page, Product page, Collection page
  */
 
-// 🛒 Hàm Add to Cart Chuyên Nghiệp
+// Add to Cart Function
 async function addToCart(variantId, quantity = 1) {
-  // Hiển thị loading
   showLoading();
   
   try {
@@ -23,41 +22,38 @@ async function addToCart(variantId, quantity = 1) {
 
     if (!response.ok) {
       const errorData = await response.json();
-      throw new Error(errorData.description || 'Sản phẩm không khả dụng');
+      throw new Error(errorData.description || 'Product not available');
     }
 
     const data = await response.json();
     
-    // Cập nhật UI
+    // Update UI
     await updateCartCount();
-    showSuccessNotification(`Đã thêm "${data.product_title}" vào giỏ hàng!`);
-    
-    // Tùy chọn: Chuyển đến trang giỏ hàng sau 1.5s
-    // setTimeout(() => { window.location.href = '/cart'; }, 1500);
+    showSuccessNotification(`Added "${data.product_title}" to cart!`);
     
     return data;
     
   } catch (error) {
-    console.error('Lỗi add to cart:', error);
-    showErrorNotification(error.message || 'Không thể thêm sản phẩm. Vui lòng thử lại!');
+    console.error('Add to cart error:', error);
+    showErrorNotification(error.message || 'Could not add product. Please try again!');
     throw error;
   } finally {
     hideLoading();
   }
 }
 
-// 📊 Cập nhật số lượng giỏ hàng
+// Update cart count
 async function updateCartCount() {
   try {
     const response = await fetch('/cart.js');
     const cart = await response.json();
     
-    // Tìm và cập nhật cart count badge (hỗ trợ nhiều selector)
+    // Find and update cart count badge (supports multiple selectors)
     const cartCountElements = document.querySelectorAll('.cart-count, [data-cart-count], .header_cart_count');
     cartCountElements.forEach(el => {
       el.textContent = cart.item_count;
       
-      // Hiển thị badge nếu có sản phẩm
+      // Show badge if there are items
       if (cart.item_count > 0) {
         el.classList.add('has-items');
       } else {
@@ -65,16 +61,16 @@ async function updateCartCount() {
       }
     });
     
-    console.log('✅ Cart updated:', cart.item_count, 'items');
+    console.log('Cart updated:', cart.item_count, 'items');
     return cart;
     
   } catch (error) {
-    console.error('❌ Lỗi update cart count:', error);
+    console.error('Error updating cart count:', error);
     return null;
   }
 }
 
-// 🔄 Hiển thị loading overlay
+// Show loading overlay
 function showLoading() {
   const overlay = document.getElementById('cartLoadingOverlay');
   if (overlay) {
@@ -82,7 +78,7 @@ function showLoading() {
   }
 }
 
-// ✅ Ẩn loading overlay
+// Hide loading overlay
 function hideLoading() {
   const overlay = document.getElementById('cartLoadingOverlay');
   if (overlay) {
@@ -90,25 +86,19 @@ function hideLoading() {
   }
 }
 
-// ✅ Hiển thị thông báo thành công
-function showSuccessNotification(message = 'Đã thêm vào giỏ hàng!') {
+// Show success notification
+function showSuccessNotification(message = 'Added to cart!') {
   const notification = document.getElementById('cartNotification');
   const messageEl = document.getElementById('cartNotificationMessage');
   
   if (notification && messageEl) {
-    // Đặt nội dung
     messageEl.textContent = message;
-    
-    // Thêm class success
     notification.className = 'cart-notification success active';
-    
-    // Reset icon về checkmark
     const icon = notification.querySelector('.cart-notification-icon');
     if (icon) {
       icon.innerHTML = '<path d="M20 6L9 17l-5-5" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>';
     }
     
-    // Tự động ẩn sau 3 giây
     setTimeout(() => {
       notification.style.animation = 'slideOut 0.3s ease-out';
       setTimeout(() => {
@@ -119,25 +109,18 @@ function showSuccessNotification(message = 'Đã thêm vào giỏ hàng!') {
   }
 }
 
-// ❌ Hiển thị thông báo lỗi
-function showErrorNotification(message = 'Đã có lỗi xảy ra!') {
+// Show error notification
+function showErrorNotification(message = 'An error occurred!') {
   const notification = document.getElementById('cartNotification');
   const messageEl = document.getElementById('cartNotificationMessage');
   
   if (notification && messageEl) {
-    // Đặt nội dung
     messageEl.textContent = message;
-    
-    // Thêm class error
     notification.className = 'cart-notification error active';
-    
-    // Đổi icon thành dấu X
     const icon = notification.querySelector('.cart-notification-icon');
     if (icon) {
       icon.innerHTML = '<path d="M18 6L6 18M6 6l12 12" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>';
     }
-    
-    // Tự động ẩn sau 4 giây (lâu hơn success để user đọc)
     setTimeout(() => {
       notification.style.animation = 'slideOut 0.3s ease-out';
       setTimeout(() => {
@@ -148,15 +131,13 @@ function showErrorNotification(message = 'Đã có lỗi xảy ra!') {
   }
 }
 
-// 🚀 Khởi tạo khi trang load xong
+// Initialize when page loads
 document.addEventListener('DOMContentLoaded', function() {
-  console.log('🛒 Cart Handler initialized');
-  
-  // Cập nhật cart count ban đầu
+  console.log('Cart Handler initialized');
   updateCartCount();
 });
 
-// Export functions để có thể dùng ở nơi khác (nếu cần)
+// Export functions for use elsewhere (if needed)
 window.cartHandler = {
   addToCart,
   updateCartCount,

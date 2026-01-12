@@ -1,10 +1,21 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
 {
   "sections": {
     "header": {
-      "type": "header"
+      "type": "header",
+      "settings": {}
     },
     "collection": {
-      "type": "collection"
+      "type": "collection",
+      "settings": {}
     },
     "footer": {
       "type": "footer",
@@ -32,7 +43,11 @@
           }
         }
       },
-      "block_order": ["footer_menu_1", "footer_menu_2", "footer_contact"],
+      "block_order": [
+        "footer_menu_1",
+        "footer_menu_2",
+        "footer_contact"
+      ],
       "settings": {
         "brand_name": "AquaPure",
         "brand_description": "Premium quality water delivered fresh to your doorstep. Pure, refreshing, and sustainable.",
@@ -40,5 +55,9 @@
       }
     }
   },
-  "order": ["header", "collection", "footer"]
+  "order": [
+    "header",
+    "collection",
+    "footer"
+  ]
 }

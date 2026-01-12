@@ -1,12 +1,53 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
 {
   "sections": {
     "header": {
       "type": "header",
-      "settings": {}
+      "settings": {
+        "logo_text": "AquaPure",
+        "menu": "main-menu"
+      }
     },
     "about": {
       "type": "about",
-      "settings": {}
+      "settings": {
+        "hero_title": "About AquaPure",
+        "hero_description": "We're dedicated to providing the purest, most refreshing water to homes and businesses.<br>Our commitment to quality and sustainability sets us apart.",
+        "story_title": "Our Story",
+        "story_paragraph_1": "Founded in 2015, AquaPure began with a simple mission: to make premium quality water accessible to everyone. What started as a small local operation has grown into a trusted name in water delivery across the region.",
+        "story_paragraph_2": "We source our water from pristine natural springs, ensuring every drop meets the highest standards of purity and taste. Our state-of-the-art facilities and rigorous quality control processes guarantee that you receive nothing but the best.",
+        "story_paragraph_3": "Today, we serve thousands of satisfied customers, from individual homes to large corporations, all trusting AquaPure for their daily hydration needs.",
+        "story_image": "shopify://shop_images/story.jpg",
+        "values_title": "Our Values",
+        "value_1_title": "Purity First",
+        "value_1_text": "We never compromise on quality. Every bottle is tested to ensure it meets our stringent purity standards.",
+        "value_2_title": "Sustainability",
+        "value_2_text": "We're committed to eco-friendly practices, from sourcing to packaging, to protect our planet for future generations.",
+        "value_3_title": "Customer Focus",
+        "value_3_text": "Your satisfaction is our priority. We go above and beyond to ensure you have the best experience with every order.",
+        "value_4_title": "Quality Assurance",
+        "value_4_text": "Multi-stage filtration and regular testing ensure every drop meets international quality standards.",
+        "value_5_title": "Community",
+        "value_5_text": "We actively support local communities and initiatives that promote health and wellness through proper hydration.",
+        "value_6_title": "Excellence",
+        "value_6_text": "Award-winning products and service that consistently exceed industry standards and customer expectations.",
+        "status_number_1": "10+",
+        "status_label_1": "Years Experience",
+        "status_number_2": "50K+",
+        "status_label_2": "Happy Customers",
+        "status_number_3": "1M+",
+        "status_label_3": "Bottles Delivered",
+        "status_number_4": "100%",
+        "status_label_4": "Pure & Natural"
+      }
     },
     "footer": {
       "type": "footer",
@@ -14,13 +55,15 @@
         "footer_menu_1": {
           "type": "menu",
           "settings": {
-            "title": "Quick Links"
+            "title": "Quick Links",
+            "menu": ""
           }
         },
         "footer_menu_2": {
           "type": "menu",
           "settings": {
-            "title": "Customer Service"
+            "title": "Customer Service",
+            "menu": ""
           }
         },
         "footer_contact": {
@@ -34,13 +77,21 @@
           }
         }
       },
-      "block_order": ["footer_menu_1", "footer_menu_2", "footer_contact"],
+      "block_order": [
+        "footer_menu_1",
+        "footer_menu_2",
+        "footer_contact"
+      ],
       "settings": {
         "brand_name": "AquaPure",
         "brand_description": "Premium quality water delivered fresh to your doorstep. Pure, refreshing, and sustainable.",
-        "copyright_text": "&copy; 2024 AquaPure. All rights reserved."
+        "copyright_text": "© 2024 AquaPure. All rights reserved."
       }
     }
   },
-  "order": ["header", "about", "footer"]
+  "order": [
+    "header",
+    "about",
+    "footer"
+  ]
 }

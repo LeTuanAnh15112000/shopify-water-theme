@@ -107,5 +107,5 @@ document.addEventListener('DOMContentLoaded', function() {
     return '$' + (cents / 100).toFixed(2);
   }
   
-  console.log('✅ Collection filter ready -', filterBtns.length, 'collections');
+  console.log('Collection filter ready -', filterBtns.length, 'collections');
 });

@@ -1,8 +1,20 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
 {
   "sections": {
     "header": {
       "type": "header",
-      "settings": {}
+      "settings": {
+        "logo_text": "AquaPure",
+        "menu": "main-menu"
+      }
     },
     "home": {
       "type": "home",
@@ -10,7 +22,7 @@
         "feature_1": {
           "type": "feature",
           "settings": {
-            "icon_svg": "<svg viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\"><path d=\"M12 2.69l5.66 5.66a8 8 0 1 1-11.31 0z\"/></svg>",
+            "icon_svg": "<svg viewbox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\"><path d=\"M12 2.69l5.66 5.66a8 8 0 1 1-11.31 0z\"></path></svg>",
             "title": "100% Pure",
             "description": "Natural spring water from pristine sources"
           }
@@ -18,7 +30,7 @@
         "feature_2": {
           "type": "feature",
           "settings": {
-            "icon_svg": "<svg viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\"><rect x=\"1\" y=\"3\" width=\"15\" height=\"13\"/><polygon points=\"16 8 20 8 23 11 23 16 16 16 16 8\"/><circle cx=\"5.5\" cy=\"18.5\" r=\"2.5\"/><circle cx=\"18.5\" cy=\"18.5\" r=\"2.5\"/></svg>",
+            "icon_svg": "<svg viewbox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\"><rect x=\"1\" y=\"3\" width=\"15\" height=\"13\"></rect><polygon points=\"16 8 20 8 23 11 23 16 16 16 16 8\"></polygon><circle cx=\"5.5\" cy=\"18.5\" r=\"2.5\"></circle><circle cx=\"18.5\" cy=\"18.5\" r=\"2.5\"></circle></svg>",
             "title": "Fast Delivery",
             "description": "Same-day delivery in most areas"
           }
@@ -26,7 +38,7 @@
         "feature_3": {
           "type": "feature",
           "settings": {
-            "icon_svg": "<svg viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\"><circle cx=\"12\" cy=\"8\" r=\"7\"/><polyline points=\"8.21 13.89 7 23 12 20 17 23 15.79 13.88\"/></svg>",
+            "icon_svg": "<svg viewbox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\"><circle cx=\"12\" cy=\"8\" r=\"7\"></circle><polyline points=\"8.21 13.89 7 23 12 20 17 23 15.79 13.88\"></polyline></svg>",
             "title": "Premium Quality",
             "description": "Award-winning water products"
           }
@@ -34,23 +46,30 @@
         "feature_4": {
           "type": "feature",
           "settings": {
-            "icon_svg": "<svg viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\"><path d=\"M12 2 C 8 2 8 6 12 10 C 16 6 16 2 12 2 M12 10 C 8 10 6 14 6 18 C 6 21 8.5 23 12 23 C 15.5 23 18 21 18 18 C 18 14 16 10 12 10\"/></svg>",
+            "icon_svg": "<svg viewbox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\"><path d=\"M12 2 C 8 2 8 6 12 10 C 16 6 16 2 12 2 M12 10 C 8 10 6 14 6 18 C 6 21 8.5 23 12 23 C 15.5 23 18 21 18 18 C 18 14 16 10 12 10\"></path></svg>",
             "title": "Eco-Friendly",
             "description": "Sustainable packaging and practices"
           }
         }
       },
-      "block_order": ["feature_1", "feature_2", "feature_3", "feature_4"],
+      "block_order": [
+        "feature_1",
+        "feature_2",
+        "feature_3",
+        "feature_4"
+      ],
       "settings": {
         "hero_title_line1": "Pure Refreshment,",
         "hero_title_line2": "Delivered Fresh",
         "hero_description": "Experience the finest selection of premium water products. From natural spring water to alkaline and sparkling varieties, we deliver pure hydration to your doorstep.",
+        "hero_image": "shopify://shop_images/mainvisual.jpg",
         "primary_button_text": "Shop Now",
         "primary_button_link": "/collections/all",
         "secondary_button_text": "Learn More",
         "secondary_button_link": "/pages/about",
         "products_title": "Featured Products",
         "products_description": "Discover our most popular water products",
+        "product_collection": "",
         "products_limit": 4,
         "view_all_text": "View All Products",
         "view_all_link": "/collections/all",
@@ -66,13 +85,15 @@
         "footer_menu_1": {
           "type": "menu",
           "settings": {
-            "title": "Quick Links"
+            "title": "Quick Links",
+            "menu": ""
           }
         },
         "footer_menu_2": {
           "type": "menu",
           "settings": {
-            "title": "Customer Service"
+            "title": "Customer Service",
+            "menu": ""
           }
         },
         "footer_contact": {
@@ -86,13 +107,21 @@
           }
         }
       },
-      "block_order": ["footer_menu_1", "footer_menu_2", "footer_contact"],
+      "block_order": [
+        "footer_menu_1",
+        "footer_menu_2",
+        "footer_contact"
+      ],
       "settings": {
         "brand_name": "AquaPure",
         "brand_description": "Premium quality water delivered fresh to your doorstep. Pure, refreshing, and sustainable.",
-        "copyright_text": "&copy; 2024 AquaPure. All rights reserved."
+        "copyright_text": "© 2024 AquaPure. All rights reserved."
       }
     }
   },
-  "order": ["header", "home", "footer"]
+  "order": [
+    "header",
+    "home",
+    "footer"
+  ]
 }
